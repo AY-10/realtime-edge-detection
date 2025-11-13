@@ -1,0 +1,22 @@
+{
+  "name": "edge-detection-viewer",
+  "version": "1.0.0",
+  "description": "TypeScript web viewer for OpenCV edge detection",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "opencv",
+    "edge-detection",
+    "typescript",
+    "webgl"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
