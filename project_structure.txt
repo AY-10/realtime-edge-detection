@@ -1,0 +1,86 @@
+Folder PATH listing for volume Windows-SSD
+Volume serial number is 00000267 ECC4:DC7A
+C:.
+|   .gitignore
+|   build.gradle
+|   DOCS_INDEX.md
+|   GIT_COMMIT_GUIDE.md
+|   gradle.properties
+|   project_structure.txt
+|   PROJECT_SUMMARY.md
+|   QUICK_START.md
+|   README.md
+|   settings.gradle
+|   SETUP_GUIDE.md
+|   SUBMISSION_CHECKLIST.md
+|   
++---.gradle
+|   +---8.2
+|   |   |   gc.properties
+|   |   |   
+|   |   +---checksums
+|   |   |       checksums.lock
+|   |   |       md5-checksums.bin
+|   |   |       sha1-checksums.bin
+|   |   |       
+|   |   +---dependencies-accessors
+|   |   |       dependencies-accessors.lock
+|   |   |       gc.properties
+|   |   |       
+|   |   +---fileChanges
+|   |   |       last-build.bin
+|   |   |       
+|   |   +---fileHashes
+|   |   |       fileHashes.lock
+|   |   |       
+|   |   \---vcsMetadata
+|   +---buildOutputCleanup
+|   |       buildOutputCleanup.lock
+|   |       cache.properties
+|   |       
+|   \---vcs-1
+|           gc.properties
+|           
++---app
+|   |   build.gradle
+|   |   
+|   \---src
+|       \---main
+|           |   AndroidManifest.xml
+|           |   
+|           +---cpp
+|           |       CMakeLists.txt
+|           |       native-lib.cpp
+|           |       
+|           +---java
+|           |   \---com
+|           |       \---example
+|           |           \---realtime
+|           |                   CameraHelper.kt
+|           |                   FullscreenQuad.kt
+|           |                   GLRenderer.kt
+|           |                   MainActivity.kt
+|           |                   NativeBridge.kt
+|           |                   YuvUtils.kt
+|           |                   
+|           \---res
+|               +---layout
+|               |       activity_main.xml
+|               |       
+|               \---values
++---gradle
+|   \---wrapper
+|           gradle-wrapper.properties
+|           
+\---web
+    |   index.html
+    |   package.json
+    |   README.md
+    |   tsconfig.json
+    |   
+    +---assets
+    |       README.md
+    |       
+    \---src
+            main.ts
+            
