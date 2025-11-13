@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace 'com.example.realtime'
     compileSdk 34
     ndkVersion "25.1.8937393"
 
