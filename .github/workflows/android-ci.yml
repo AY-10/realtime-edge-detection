@@ -47,7 +47,9 @@ jobs:
         run: |
           curl -L -o opencv.zip https://github.com/opencv/opencv/releases/download/4.8.0/opencv-4.8.0-android-sdk.zip
           unzip -q opencv.zip -d $GITHUB_WORKSPACE
-          mv $GITHUB_WORKSPACE/opencv-*-android-sdk $GITHUB_WORKSPACE/opencv-android-sdk
+          ls -la $GITHUB_WORKSPACE
+          mv $GITHUB_WORKSPACE/OpenCV-android-sdk $GITHUB_WORKSPACE/opencv-android-sdk || true
+          ls -la $GITHUB_WORKSPACE
 
       - name: Build Debug APK
         env:
