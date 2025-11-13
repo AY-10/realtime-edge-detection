@@ -7,6 +7,7 @@ Common issues and solutions for the Real-Time Edge Detection project.
 ## 🏗️ Build Issues
 
 ### Issue: "OpenCV not found"
+
 ```
 CMake Error: find_package(OpenCV REQUIRED) failed
 Could not find a package configuration file provided by "OpenCV"
@@ -15,17 +16,20 @@ Could not find a package configuration file provided by "OpenCV"
 **Solutions:**
 
 1. **Verify OpenCV SDK path**
+
    ```properties
    # Check local.properties
    opencv.dir=C:\\opencv\\OpenCV-android-sdk\\sdk
    ```
 
 2. **Download OpenCV**
+
    - Visit: https://opencv.org/releases/
    - Download Android SDK (not iOS or other platforms)
    - Extract completely before configuring path
 
 3. **Check directory structure**
+
    ```
    opencv/sdk/
    ├── native/
@@ -49,11 +53,13 @@ Could not find a package configuration file provided by "OpenCV"
 ---
 
 ### Issue: "NDK not configured"
+
 ```
 NDK is not configured. Download it with SDK manager.
 ```
 
 **Solution:**
+
 ```
 Android Studio → Tools → SDK Manager → SDK Tools
 ✓ NDK (Side by side)
@@ -64,6 +70,7 @@ Click Apply and wait for download
 ---
 
 ### Issue: "Gradle sync failed"
+
 ```
 Failed to apply plugin 'com.android.application'
 ```
@@ -71,15 +78,17 @@ Failed to apply plugin 'com.android.application'
 **Solutions:**
 
 1. **Update Gradle version**
+
    ```properties
    # gradle/wrapper/gradle-wrapper.properties
    distributionUrl=https\://services.gradle.org/distributions/gradle-8.2-bin.zip
    ```
 
 2. **Clear Gradle cache**
+
    ```bash
    ./gradlew clean --refresh-dependencies
-   
+
    # Or manually delete
    rm -rf .gradle/
    rm -rf ~/.gradle/caches/
@@ -93,11 +102,13 @@ Failed to apply plugin 'com.android.application'
 ---
 
 ### Issue: "CMake executable not found"
+
 ```
 CMake Error: CMake was unable to find a build program corresponding to "Ninja"
 ```
 
 **Solution:**
+
 ```
 SDK Manager → SDK Tools → ✓ CMake (version 3.22.1 or later)
 ```
@@ -107,6 +118,7 @@ SDK Manager → SDK Tools → ✓ CMake (version 3.22.1 or later)
 ## 📱 Runtime Issues
 
 ### Issue: Camera permission denied
+
 ```
 java.lang.SecurityException: Permission denied
 ```
@@ -114,11 +126,13 @@ java.lang.SecurityException: Permission denied
 **Solutions:**
 
 1. **Grant permission manually**
+
    ```
    Settings → Apps → Edge Detection → Permissions → Camera → Allow
    ```
 
 2. **Check AndroidManifest.xml**
+
    ```xml
    <uses-permission android:name="android.permission.CAMERA" />
    <uses-feature android:name="android.hardware.camera2" android:required="true" />
@@ -129,6 +143,7 @@ java.lang.SecurityException: Permission denied
 ---
 
 ### Issue: Black screen / No camera preview
+
 ```
 App starts but shows black screen
 ```
@@ -136,11 +151,13 @@ App starts but shows black screen
 **Solutions:**
 
 1. **Check Logcat for errors**
+
    ```bash
    adb logcat | grep -E "Camera|NativeLib|MainActivity"
    ```
 
 2. **Verify Camera2 support**
+
    ```bash
    adb shell getprop ro.product.model
    # Camera2 requires Android 5.0+ (API 21+)
@@ -148,6 +165,7 @@ App starts but shows black screen
    ```
 
 3. **Test on physical device**
+
    - Emulators have limited Camera2 support
    - Use a real Android phone/tablet
 
@@ -161,6 +179,7 @@ App starts but shows black screen
 ---
 
 ### Issue: App crashes on launch
+
 ```
 java.lang.UnsatisfiedLinkError: dlopen failed: library "libnative-lib.so" not found
 ```
@@ -168,6 +187,7 @@ java.lang.UnsatisfiedLinkError: dlopen failed: library "libnative-lib.so" not fo
 **Solutions:**
 
 1. **Rebuild native library**
+
    ```bash
    ./gradlew clean
    ./gradlew :app:externalNativeBuildDebug
@@ -175,6 +195,7 @@ java.lang.UnsatisfiedLinkError: dlopen failed: library "libnative-lib.so" not fo
    ```
 
 2. **Check ABI filters**
+
    ```gradle
    // app/build.gradle
    android {
@@ -199,6 +220,7 @@ java.lang.UnsatisfiedLinkError: dlopen failed: library "libnative-lib.so" not fo
 ---
 
 ### Issue: "Out of memory" error
+
 ```
 java.lang.OutOfMemoryError: Failed to allocate a 12441612 byte allocation
 ```
@@ -206,6 +228,7 @@ java.lang.OutOfMemoryError: Failed to allocate a 12441612 byte allocation
 **Solutions:**
 
 1. **Reduce image resolution**
+
    ```kotlin
    // CameraHelper.kt
    private const val IMAGE_WIDTH = 640  // Reduce if needed
@@ -213,6 +236,7 @@ java.lang.OutOfMemoryError: Failed to allocate a 12441612 byte allocation
    ```
 
 2. **Increase heap size**
+
    ```xml
    <!-- AndroidManifest.xml -->
    <application
@@ -233,6 +257,7 @@ java.lang.OutOfMemoryError: Failed to allocate a 12441612 byte allocation
 ---
 
 ### Issue: Low FPS performance
+
 ```
 Frame rate below 20 FPS
 ```
@@ -240,22 +265,25 @@ Frame rate below 20 FPS
 **Solutions:**
 
 1. **Optimize Canny parameters**
+
    ```cpp
    // native-lib.cpp
    // Reduce blur kernel size
    cv::GaussianBlur(gray, blurred, cv::Size(3, 3), 1.0);  // Was 5x5
-   
+
    // Adjust thresholds
    cv::Canny(blurred, edges, 100, 200);  // Higher = less processing
    ```
 
 2. **Reduce resolution**
+
    ```kotlin
    private const val IMAGE_WIDTH = 480   // Was 640
    private const val IMAGE_HEIGHT = 360  // Was 480
    ```
 
 3. **Enable GPU optimization**
+
    ```gradle
    android {
        defaultConfig {
@@ -276,6 +304,7 @@ Frame rate below 20 FPS
 ## 🌐 Web Viewer Issues
 
 ### Issue: "Cannot GET /"
+
 ```
 404 - File not found
 ```
@@ -283,6 +312,7 @@ Frame rate below 20 FPS
 **Solutions:**
 
 1. **Start HTTP server in correct directory**
+
    ```bash
    cd web  # Must be in web directory!
    python -m http.server 8000
@@ -296,6 +326,7 @@ Frame rate below 20 FPS
 ---
 
 ### Issue: TypeScript not compiling
+
 ```
 Error: Cannot find module 'typescript'
 ```
@@ -303,12 +334,14 @@ Error: Cannot find module 'typescript'
 **Solutions:**
 
 1. **Install dependencies**
+
    ```bash
    cd web
    npm install
    ```
 
 2. **Rebuild TypeScript**
+
    ```bash
    npm run build
    ```
@@ -326,6 +359,7 @@ Error: Cannot find module 'typescript'
 ---
 
 ### Issue: "Module not found" errors
+
 ```
 GET http://localhost:8000/dist/main.js 404
 ```
@@ -333,6 +367,7 @@ GET http://localhost:8000/dist/main.js 404
 **Solutions:**
 
 1. **Build TypeScript first**
+
    ```bash
    npm run build
    # Creates web/dist/main.js
@@ -346,11 +381,13 @@ GET http://localhost:8000/dist/main.js 404
 ---
 
 ### Issue: Image not loading
+
 ```
 GET http://localhost:8000/assets/sample.svg 404
 ```
 
 **Solution:**
+
 ```bash
 # Verify file exists
 ls web/assets/sample.svg
@@ -364,11 +401,13 @@ chmod 644 web/assets/sample.svg
 ## 🔐 Permission Issues
 
 ### Issue: "INSTALL_FAILED_UPDATE_INCOMPATIBLE"
+
 ```
 Installation failed with message INSTALL_FAILED_UPDATE_INCOMPATIBLE
 ```
 
 **Solution:**
+
 ```bash
 # Uninstall previous version
 adb uninstall com.example.realtime
@@ -380,6 +419,7 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 ---
 
 ### Issue: USB debugging not working
+
 ```
 error: device unauthorized
 ```
@@ -387,12 +427,14 @@ error: device unauthorized
 **Solutions:**
 
 1. **Accept RSA key on device**
+
    - Unlock phone
    - Look for "Allow USB debugging?" dialog
    - Check "Always allow from this computer"
    - Click OK
 
 2. **Revoke and retry**
+
    ```bash
    adb kill-server
    adb start-server
@@ -410,6 +452,7 @@ error: device unauthorized
 ### Enable Detailed Logging
 
 #### Android Logcat
+
 ```bash
 # Full app logs
 adb logcat | grep "com.example.realtime"
@@ -425,6 +468,7 @@ adb logcat -c && adb logcat -s NativeLib:D MainActivity:D
 ```
 
 #### Native C++ Debugging
+
 ```cpp
 // native-lib.cpp
 #define TAG "NativeLib"
@@ -435,6 +479,7 @@ LOGD("Canny thresholds: %.0f - %.0f", lowThresh, highThresh);
 ```
 
 #### Kotlin Debugging
+
 ```kotlin
 // MainActivity.kt
 private val TAG = "MainActivity"
@@ -448,6 +493,7 @@ Log.d(TAG, "Frame size: ${frameBytes.size} bytes")
 ### Performance Profiling
 
 #### Android Studio Profiler
+
 ```
 1. Run app in debug mode
 2. View → Tool Windows → Profiler
@@ -460,6 +506,7 @@ Log.d(TAG, "Frame size: ${frameBytes.size} bytes")
 ```
 
 #### Systrace
+
 ```bash
 # Capture system trace
 python systrace.py --time=10 -o trace.html sched freq idle am wm gfx view \
@@ -472,19 +519,20 @@ python systrace.py --time=10 -o trace.html sched freq idle am wm gfx view \
 
 ## 📊 Common Error Messages
 
-| Error | Cause | Solution |
-|-------|-------|----------|
-| `SecurityException: Permission denied` | Camera permission not granted | Grant permission in Settings |
-| `UnsatisfiedLinkError: libnative-lib.so` | Native library not built | Run `./gradlew :app:externalNativeBuildDebug` |
-| `OutOfMemoryError` | Image too large | Reduce resolution or increase heap |
-| `IllegalStateException: Camera is in use` | Camera already open | Close other camera apps |
-| `FileNotFoundException: OpenCVConfig.cmake` | OpenCV not configured | Update `local.properties` with correct path |
+| Error                                       | Cause                         | Solution                                      |
+| ------------------------------------------- | ----------------------------- | --------------------------------------------- |
+| `SecurityException: Permission denied`      | Camera permission not granted | Grant permission in Settings                  |
+| `UnsatisfiedLinkError: libnative-lib.so`    | Native library not built      | Run `./gradlew :app:externalNativeBuildDebug` |
+| `OutOfMemoryError`                          | Image too large               | Reduce resolution or increase heap            |
+| `IllegalStateException: Camera is in use`   | Camera already open           | Close other camera apps                       |
+| `FileNotFoundException: OpenCVConfig.cmake` | OpenCV not configured         | Update `local.properties` with correct path   |
 
 ---
 
 ## 🆘 Still Having Issues?
 
 1. **Clean and Rebuild**
+
    ```bash
    ./gradlew clean
    rm -rf .gradle/ build/
@@ -492,6 +540,7 @@ python systrace.py --time=10 -o trace.html sched freq idle am wm gfx view \
    ```
 
 2. **Check System Requirements**
+
    - Android Studio Arctic Fox or later
    - Android SDK Platform 34
    - NDK v25.1.8937393 or later
@@ -499,11 +548,13 @@ python systrace.py --time=10 -o trace.html sched freq idle am wm gfx view \
    - Physical Android device (not emulator)
 
 3. **Review Documentation**
+
    - README.md - Project overview
    - BUILD_INSTRUCTIONS.md - Detailed build steps
    - QUICK_START.md - Fast setup guide
 
 4. **Check GitHub Issues**
+
    - https://github.com/AY-10/realtime-edge-detection/issues
 
 5. **Enable Verbose Logging**
@@ -514,6 +565,7 @@ python systrace.py --time=10 -o trace.html sched freq idle am wm gfx view \
 ---
 
 **Need more help? Create an issue on GitHub with:**
+
 - Error message / stack trace
 - Android Studio version
 - Device model and Android version

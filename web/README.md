@@ -14,16 +14,19 @@ A modern, interactive TypeScript-powered web viewer for visualizing edge detecti
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm or yarn
 
 ### Installation
+
 ```bash
 cd web
 npm install
 ```
 
 ### Development
+
 ```bash
 # Compile TypeScript
 npm run build
@@ -33,16 +36,17 @@ python -m http.server 8000
 ```
 
 ### Access
+
 ```
 http://localhost:8000
 ```
 
 ## ⌨️ Keyboard Shortcuts
 
-| Key | Action |
-|-----|--------|
-| `R` | Refresh viewer |
-| `F` | Toggle fullscreen |
+| Key | Action                     |
+| --- | -------------------------- |
+| `R` | Refresh viewer             |
+| `F` | Toggle fullscreen          |
 | `I` | Show debug info in console |
 
 ## 🛠️ Technology Stack
@@ -57,11 +61,11 @@ http://localhost:8000
 The viewer exposes debug utilities via `window.viewerDebug`:
 
 ```javascript
-viewerDebug.getFPS()          // Get current FPS
-viewerDebug.getResolution()   // Get image resolution
-viewerDebug.isLoaded()        // Check if image loaded
-viewerDebug.refresh()         // Reload page
-viewerDebug.metrics()         // Log performance table
+viewerDebug.getFPS(); // Get current FPS
+viewerDebug.getResolution(); // Get image resolution
+viewerDebug.isLoaded(); // Check if image loaded
+viewerDebug.refresh(); // Reload page
+viewerDebug.metrics(); // Log performance table
 ```
 
 ## 📱 Integration with Android App
