@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
+  <!-- Black background -->
+  <rect width="640" height="480" fill="#000000"/>
+  
+  <!-- Edge detection simulation - white edges -->
+  <!-- Rectangle outline -->
+  <rect x="100" y="100" width="200" height="150" fill="none" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Circle outline -->
+  <circle cx="450" cy="175" r="80" fill="none" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Triangle outline -->
+  <path d="M 320 320 L 420 420 L 220 420 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Random edge lines to simulate Canny edges -->
+  <line x1="50" y1="50" x2="150" y2="80" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
+  <line x1="500" y1="350" x2="580" y2="400" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  <line x1="150" y1="300" x2="200" y2="350" stroke="#ffffff" stroke-width="1" opacity="0.9"/>
+  
+  <!-- More edge fragments -->
+  <polyline points="400,50 430,70 450,100" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  <polyline points="100,400 120,430 150,450" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Text indicating this is sample -->
+  <text x="320" y="460" font-family="Arial" font-size="14" fill="#666" text-anchor="middle">
+    Sample Edge Detection Output - Replace with actual frame from Android app
+  </text>
+</svg>

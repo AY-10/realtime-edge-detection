@@ -164,7 +164,7 @@
     </header>
 
     <div id="container">
-      <img id="img" src="assets/sample.png" alt="Processed Frame" />
+      <img id="img" src="assets/sample.svg" alt="Processed Frame" onerror="this.onerror=null; this.src='assets/sample.svg';" />
       <div id="overlay">
         <div class="stat">
           <span class="stat-label">FPS:</span>
@@ -172,11 +172,15 @@
         </div>
         <div class="stat">
           <span class="stat-label">Resolution:</span>
-          <span class="stat-value" id="res">Loading...</span>
+          <span class="stat-value" id="res">640×480</span>
         </div>
         <div class="stat">
           <span class="stat-label">Processing:</span>
           <span class="stat-value">Canny Edge</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Status:</span>
+          <span class="stat-value" style="color: #ffaa00;">Sample Mode</span>
         </div>
       </div>
     </div>
@@ -199,6 +203,23 @@
           visualization
         </li>
       </ul>
+    </div>
+
+    <div class="info-panel" style="margin-top: 20px; border-left: 4px solid #ffaa00;">
+      <h2>ℹ️ Demo Note</h2>
+      <p style="color: #ccc; line-height: 1.6;">
+        This web viewer currently displays a <strong>sample edge detection visualization</strong>. 
+        To see actual processed frames from the Android app:
+      </p>
+      <ol style="color: #aaa; margin-top: 12px; margin-left: 20px; line-height: 1.8;">
+        <li>Build and run the Android app in Android Studio</li>
+        <li>Capture a processed frame from the device</li>
+        <li>Save it as <code style="background: #333; padding: 2px 6px; border-radius: 3px;">web/assets/sample.png</code></li>
+        <li>Refresh this page to see the real output</li>
+      </ol>
+      <p style="color: #888; margin-top: 12px; font-size: 0.9em;">
+        The FPS counter and resolution display are simulated for demonstration purposes.
+      </p>
     </div>
 
     <footer>
